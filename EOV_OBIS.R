@@ -2,6 +2,7 @@ library(gh)
 library(readr)
 library(robis)
 library(dplyr)
+library(htmlwidgets)
 
 # first we will pull the files where the EOV taxonomy are stored from GitHub
 repo_files <- gh("GET /repos/:owner/:repo/contents/:path",
@@ -28,7 +29,11 @@ mangrove_occ <- robis::occurrence(taxonid = mangroveIdentifiers)
 nrow(mangrove_occ)
 
 # use the built in leaflet capability from robis to map the occurrences
-map_leaflet(mangrove_occ,
+m <- map_leaflet(mangrove_occ,
             provider_tiles = "Esri.WorldGrayCanvas",
             popup = function(x) { x["scientificName"] },
             )
+m
+
+# to save the leaflet map outside R
+saveWidget(m, "mangroveMap.html", selfcontained = TRUE)
