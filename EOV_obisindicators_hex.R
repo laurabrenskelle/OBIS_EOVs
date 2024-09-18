@@ -74,7 +74,3 @@ for (resolution in 1:5) {
   write(x=geojson_string, file=fname)
   proc.time() - ptm
 }
-
-geojson_string <- geojsonsf::sf_geojson(grid_dec)
-fname <- sprintf("data/seaturtle_res%s.geojson",RES)
-write(x=geojson_string, file=fname)
