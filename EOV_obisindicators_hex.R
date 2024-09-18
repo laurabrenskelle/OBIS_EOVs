@@ -64,3 +64,17 @@ nrow(turtle_occ)
 
 grid <- h3_indicators(turtle_occ, res=1)
 obisindicators::gmap_indicator(grid, "n", label = "# of records", trans = "log10", crs=4326)
+
+ptm <- proc.time()
+
+for (resolution in 1:5) {
+  grid_dec <- h3_indicators(turtle_occ, resolution = resolution)
+  geojson_string <- geojsonsf::sf_geojson(grid_dec)
+  fname <- sprintf("data/seaturtle_res%s.geojson",RES)
+  write(x=geojson_string, file=fname)
+  proc.time() - ptm
+}
+
+geojson_string <- geojsonsf::sf_geojson(grid_dec)
+fname <- sprintf("data/seaturtle_res%s.geojson",RES)
+write(x=geojson_string, file=fname)
