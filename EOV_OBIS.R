@@ -26,5 +26,5 @@ m <- map_leaflet(mangrove_occ,
             )
 m
 
-# to save the leaflet map outside R
+# to save the leaflet map for viewing outside R
 saveWidget(m, "mangroveMap.html", selfcontained = TRUE)
