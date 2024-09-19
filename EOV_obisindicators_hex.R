@@ -58,7 +58,7 @@ IDlist <- read.csv("https://raw.githubusercontent.com/ioos/marine_life_data_netw
 # using the list of taxonIDs for each EOV, we will use robis to query for all occurrences
 # this will take a bit to download all of the occurrences
 # let's use sea turtles for our example
-turtle_occ <- robis::occurrence(taxonid = IDlist$Identifiers[7])
+turtle_occ <- robis::occurrence(taxonid = IDlist$Identifiers[7], fields = c("occurrenceID", "scientificName", "decimalLongitude", "decimalLatitude", "year"))
 # let's check how many occurrences we got from OBIS
 nrow(turtle_occ)
 
